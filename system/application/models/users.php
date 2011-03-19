@@ -14,14 +14,14 @@ class Users extends Model {
     	
     	$user = $result[0];
     	
-    	$this->db->from('users_animals')->where('id = '.$id_user);
+    	$this->db->from('users_animals')->where('id_user = '.$id_user);
     	$query = $this->db->get();
     	$result = $query->result();
     	
     	$user->animals = array();
     	
     	foreach($result as $r) {
-    		array_push($m->animals, $this->Animals->get($r->id));
+    		array_push($m->animals, $this->Animals->get($r->id_animal));
     	}
     	
     	return $user;

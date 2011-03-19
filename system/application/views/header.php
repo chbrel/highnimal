@@ -22,9 +22,7 @@
 			<li><?=anchor('user/login', 'Se connecter', array('title' => 'log in')); ?></li>
 			<li><?=anchor('user/register', 'Inscription', array('title' => 'register')); ?></li>
 			<?php } else { ?>
-			<li><?=anchor('user/logout', 'Log Out ('.$this->session->userdata("user")->login.')', array('title' => 'log out')); ?></li>
-			<li><?=anchor('movie/managewaitingmovies', 'Gérer mes films en attente de validation', array('title' => 'Gérer mes films en attente de validation')); ?></li>
-			<li><?=anchor('movie/listall/a', 'Tous les films', array('title' => 'Toutes les films')); ?></li>
+			<li><?=anchor('user/logout', 'Log Out ('.$this->session->userdata("user")->email.')', array('title' => 'log out')); ?></li>
 			<li><?=anchor('search/index', 'Recherche', array('title' => 'Recherche')); ?></li>
 			<?php } ?>
 		</ul>

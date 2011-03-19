@@ -58,9 +58,10 @@ class User extends Controller {
 		$data['titleComplement'] = 'S\'enregistrer';
 		
 		$this->form_validation->set_message('required', 'Le champs "%s" est n&eacute;cessaire. Veuillez le compl&eacute;ter.');
+		$this->form_validation->set_message('min_length', 'Le champs "%s" doit contenir minimum 6 caract&egrave;res. Veuillez le compl&eacute;ter.');
 
 		$this->form_validation->set_rules('email', 'Adresse Mail', 'trim|required|xss_clean|valid_email');
-		$this->form_validation->set_rules('password', 'Mot de passe', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('password', 'Mot de passe', 'trim|required|xss_clean|min_length[6]');
 		
 		if ($this->form_validation->run() == FALSE) {
 			$data['connexion_error'] = "L'adresse mail n'est pas valide ou le mot de passe est manquant.";
@@ -70,7 +71,7 @@ class User extends Controller {
 		} else {
 			$email = $this->input->post('email');
 		
-			if ($this->Users->email_exist($email)) {
+			if ($this->Users->email_exists($email)) {
 				$data['connexion_error'] = "Cette adresse mail est d&eacute;j&agrave; utilis&eacute;e.";
 				$this->load->view('header', $data);
 				$this->load->view('user/register');
