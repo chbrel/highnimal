@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Sam 19 Mars 2011 à 20:59
+-- Généré le : Sam 19 Mars 2011 à 21:38
 -- Version du serveur: 5.0.41
 -- Version de PHP: 5.2.6
 
@@ -194,7 +194,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `status` enum('pro','part') collate utf8_unicode_ci NOT NULL,
   `email` varchar(250) collate utf8_unicode_ci NOT NULL,
   `phone` varchar(15) collate utf8_unicode_ci NOT NULL,
-  `location` varchar(250) collate utf8_unicode_ci NOT NULL,
+  `location` varchar(250) collate utf8_unicode_ci default NULL,
   `registration` varchar(250) collate utf8_unicode_ci default NULL,
   `credits` int(11) NOT NULL,
   `password` varchar(32) collate utf8_unicode_ci NOT NULL,
