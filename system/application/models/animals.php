@@ -32,7 +32,7 @@ class Animals extends Model {
     	$data = array(
                'id' => '' ,
                'name' => $name,
-               'species' => $species,
+               'species' => $species->id,
                'race' => $race,
                'birthdate' => $birthdate,
                'sex' => $sex,
