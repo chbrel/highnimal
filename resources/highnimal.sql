@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Serveur: localhost
--- Généré le : Sam 19 Mars 2011 à 21:45
+-- Généré le : Dim 20 Mars 2011 à 00:05
 -- Version du serveur: 5.0.41
 -- Version de PHP: 5.2.6
 
@@ -190,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `species` (
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL,
-  `name` varchar(250) collate utf8_unicode_ci NOT NULL,
+  `name` varchar(250) collate utf8_unicode_ci default NULL,
   `status` enum('pro','part') collate utf8_unicode_ci NOT NULL,
   `email` varchar(250) collate utf8_unicode_ci NOT NULL,
   `phone` varchar(15) collate utf8_unicode_ci default NULL,
@@ -204,6 +204,24 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 --
 -- Contenu de la table `users`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `users_animals`
+--
+
+DROP TABLE IF EXISTS `users_animals`;
+CREATE TABLE IF NOT EXISTS `users_animals` (
+  `id_user` int(11) NOT NULL,
+  `id_animal` int(11) NOT NULL,
+  PRIMARY KEY  (`id_user`,`id_animal`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `users_animals`
 --
 
 
