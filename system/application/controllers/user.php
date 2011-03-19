@@ -16,7 +16,7 @@ class User extends Controller {
 		$data['titleComplement'] = 'Profil';
 		
 		$this->load->view('header', $data);
-		$this->load->view('user/index');
+		$this->load->view('user/index', $data);
 		$this->load->view('footer');
 	}
 	
