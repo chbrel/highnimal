@@ -43,6 +43,19 @@ echo form_label('Mot de passe', 'password');
 echo form_input($data_password);
 echo '</li>';
 
+$data_password2 = array(
+              'name'        => 'password2',
+              'id'          => 'password2',
+              'value'       => $this->input->post('password2'),
+              'size' => '75',
+              'maxlength' => '200',
+              'type' => 'password'
+            );
+echo '<li>';
+echo form_label('Retapper le de passe', 'password2');
+echo form_input($data_password2);
+echo '</li>';
+
 echo form_submit('Inscription', 'Inscription');
 //<div><input type="submit" value="Submit" /></div>
 echo '</ul>';

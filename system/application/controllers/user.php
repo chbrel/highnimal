@@ -67,16 +67,21 @@ class User extends Controller {
 			$this->load->view('header', $data);
 			$this->load->view('user/register');
 			$this->load->view('footer');		
-		}else {
+		} else {
 			$email = $this->input->post('email');
 		
 			if ($this->Users->email_exist($email)) {
-				$data['connexion_error'] = "Cette adresse mail est déjà utilisée.";
+				$data['connexion_error'] = "Cette adresse mail est d&eacute;j&agrave; utilis&eacute;e.";
+				$this->load->view('header', $data);
+				$this->load->view('user/register');
+				$this->load->view('footer');
+			} else if($this->input->post('password') != $this->input->post('password2')) {
+				$data['connexion_error'] = "Les mots de passe tapp&eacute;s ne correspondent pas.";
 				$this->load->view('header', $data);
 				$this->load->view('user/register');
 				$this->load->view('footer');
 			} else {
-				$userId = $this->Users->create($this->input->post('status'), $this->input->post('email'), $this->input->post('password'));
+				$userId = $this->Users->create($this->input->post('status'), $email, $this->input->post('password'));
 				$user = $this->Users->get($userId);
 				$newdata = array(
 					  'user'  => $user,
