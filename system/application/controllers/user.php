@@ -67,18 +67,27 @@ class User extends Controller {
 			$this->load->view('header', $data);
 			$this->load->view('user/register');
 			$this->load->view('footer');		
-		} else {
+		}else {
+			$email = $this->input->post('email');
+		
+			if ($this->Users->email_exist($email)) {
+				$data['connexion_error'] = "Cette adresse mail est déjà utilisée.";
+				$this->load->view('header', $data);
+				$this->load->view('user/register');
+				$this->load->view('footer');
+			} else {
 				$userId = $this->Users->create($this->input->post('status'), $this->input->post('email'), $this->input->post('password'));
 				$user = $this->Users->get($userId);
 				$newdata = array(
-                 	  'user'  => $user,
-               		);
+					  'user'  => $user,
+					);
 
 				$this->session->set_userdata($newdata);
 				
 				$this->load->view('header', $data);
 				$this->load->view('user/registerok');
 				$this->load->view('footer');
+			}
 		}
 	}
 	

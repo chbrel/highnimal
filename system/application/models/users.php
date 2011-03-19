@@ -64,7 +64,7 @@ class Users extends Model {
     	}
     }
 	
-	function email_exist($email)
+	function email_exists($email)
 	{
 		$this->db->from('users')->where("email = '".$email."'");
 		$query = $this->db->get();
