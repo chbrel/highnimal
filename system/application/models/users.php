@@ -15,11 +15,14 @@ class Users extends Model {
     	return $result[0];
     }
     
-    function create($login, $password) {    
+    function create($name, $status, $email, $password) {    
     	$data = array(
                'id' => '' ,
-               'login' => $login,
-               'password' => md5($password)
+               'name' => $name,
+               'status' => $status,
+               'email' => $email,
+               'password' => md5($password),
+               'credits' => 0
             );
 
 		$query = $this->db->insert('users', $data);
@@ -29,8 +32,9 @@ class Users extends Model {
 		return $newId;
     }
     
-    function update($data, $id_user) {    
-    	return null;
+    function update($data, $id_user) {
+    	$this->db->where('id = '.$id_user);
+    	$this->db->update('users', $data);
     }
     
     function delete($id_user) {
@@ -38,8 +42,8 @@ class Users extends Model {
 		$this->db->delete('users');
     }
     
-    function check_user($login, $password, $md5 = false) {
-    	$this->db->from('users')->where("login = '".$login."'");
+    function check_user($email, $password, $md5 = false) {
+    	$this->db->from('users')->where("email = '".$email."'");
     	$query = $this->db->get();
     	
     	$result = $query->result();
