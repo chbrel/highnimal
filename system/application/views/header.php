@@ -16,16 +16,21 @@
 	<div id="mainheader" class="branding" role="banner">
 	</div>
 	
-	<div id="navigation" role="navigation" >
-		<ul>
+	<div id="navigation" role="navigation">
+		<div id="actions">
+			<div id="offre">Poster une offre</div>
+			<div id="demande">Poster une demande</div>
+		</div>
+		<div id="connexion">
 			<?php if(!$this->session->userdata("user")) { ?>
-			<li><?=anchor('user/login', 'Se connecter', array('title' => 'log in')); ?></li>
-			<li><?=anchor('user/register', 'Inscription', array('title' => 'register')); ?></li>
+				<div id="register"><?=anchor('user/register', 'Cr&eacute;er un compte', array('title' => 'Créer un compte')); ?></div>
+				<div id="login"><?=anchor('user/login', 'Se connecter', array('title' => 'Se connecter')); ?></div>
 			<?php } else { ?>
-			<li><?=anchor('user/logout', 'Log Out ('.$this->session->userdata("user")->email.')', array('title' => 'log out')); ?></li>
-			<li><?=anchor('search/index', 'Recherche', array('title' => 'Recherche')); ?></li>
+				<div id="logout"><?=anchor('user/logout', 'Log Out ('.$this->session->userdata("user")->email.')', array('title' => 'log out')); ?></div>
 			<?php } ?>
-		</ul>
+		</div>
 	</div>
+	
+	<?=anchor('search/index', 'Recherche', array('title' => 'Recherche')); ?>
 	
 	<div id="section-main" role="main">
