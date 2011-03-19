@@ -2,7 +2,7 @@
 
 class User extends Controller {
 
-	function Accueil()
+	function User()
 	{
 		parent::Controller();
 		$this->output->enable_profiler(FALSE);	

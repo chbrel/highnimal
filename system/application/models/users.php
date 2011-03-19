@@ -64,6 +64,15 @@ class Users extends Model {
     		return null;
     	}
     }
+	
+	function email_exist($email)
+	{
+		$this->db->from('users')->where("email = '".$email."'");
+		$query = $this->db->get();
+		$result = $query->result();
+		
+		return count($result);
+	}
 }
 
 /* End of file users.php */
