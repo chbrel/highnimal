@@ -12,7 +12,19 @@ class Users extends Model {
     	
     	$result = $query->result();
     	
-    	return $result[0];
+    	$user = $result[0];
+    	
+    	$this->db->from('users_animals')->where('id = '.$id_user);
+    	$query = $this->db->get();
+    	$result = $query->result();
+    	
+    	$user->animals = array();
+    	
+    	foreach($result as $r) {
+    		array_push($m->animals, $this->Animals->get($r->id));
+    	}
+    	
+    	return $user;
     }
     
     function create($status, $email, $password) {    
