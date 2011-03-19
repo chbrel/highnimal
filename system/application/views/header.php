@@ -19,7 +19,8 @@
 	<div id="navigation" role="navigation" >
 		<ul>
 			<?php if(!$this->session->userdata("user")) { ?>
-			<li><?=anchor('user/login', 'Log In', array('title' => 'log in')); ?></li>
+			<li><?=anchor('user/login', 'Se connecter', array('title' => 'log in')); ?></li>
+			<li><?=anchor('user/register', 'Inscription', array('title' => 'register')); ?></li>
 			<?php } else { ?>
 			<li><?=anchor('user/logout', 'Log Out ('.$this->session->userdata("user")->login.')', array('title' => 'log out')); ?></li>
 			<li><?=anchor('movie/managewaitingmovies', 'Gérer mes films en attente de validation', array('title' => 'Gérer mes films en attente de validation')); ?></li>

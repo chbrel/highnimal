@@ -15,10 +15,9 @@ class Users extends Model {
     	return $result[0];
     }
     
-    function create($name, $status, $email, $password) {    
+    function create($status, $email, $password) {    
     	$data = array(
                'id' => '' ,
-               'name' => $name,
                'status' => $status,
                'email' => $email,
                'password' => md5($password),

@@ -8,18 +8,17 @@ if(isset($connexion_error)) {
 <?php echo form_open('user/login');
 echo '<ul>';
 
-$data_login = array(
-              'name'        => 'login',
-              'id'          => 'login',
-              'value'       => $this->input->post('login'),
+$data_email = array(
+              'name'        => 'email',
+              'id'          => 'email',
+              'value'       => $this->input->post('email'),
               'size' => '75',
               'maxlength' => '50',
             );
 echo '<li>';
-echo form_label('Login', 'login');
-echo form_input($data_login);
+echo form_label('Adresse Mail', 'email');
+echo form_input($data_email);
 echo '</li>';
-
 
 $data_password = array(
               'name'        => 'password',

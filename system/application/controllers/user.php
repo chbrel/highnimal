@@ -25,7 +25,7 @@ class User extends Controller {
 		
 		$this->form_validation->set_message('required', 'Le champs "%s" est n&eacute;cessaire. Veuillez le compl&eacute;ter.');
 
-		$this->form_validation->set_rules('login', 'Login', 'trim|required|xss_clean');
+		$this->form_validation->set_rules('email', 'Adresse Mail', 'trim|required|xss_clean|valid_email');
 		$this->form_validation->set_rules('password', 'Mot de passe', 'trim|required|xss_clean');
 		
 		if ($this->form_validation->run() == FALSE) {
@@ -33,8 +33,9 @@ class User extends Controller {
 			$this->load->view('user/login');
 			$this->load->view('footer');		
 		} else {
-			$user = $this->Users->check_user($this->input->post('login'), $this->input->post('password'));
+			$user = $this->Users->check_user($this->input->post('email'), $this->input->post('password'));
 			if($user!=null) {
+				$user = $this->Users->get($user->id);
 				$newdata = array(
                  	  'user'  => $user,
                		);
@@ -45,11 +46,39 @@ class User extends Controller {
 				$this->load->view('user/loginok');
 				$this->load->view('footer');
 			} else {
-				$data['connexion_error'] = "Le login ou le mot de passe est erroné.";
+				$data['connexion_error'] = "L'adresse mail ou le mot de passe est erroné.";
 				$this->load->view('header', $data);
 				$this->load->view('user/login', $data);
 				$this->load->view('footer');
 			}
+		}
+	}
+	
+	function register() {
+		$data['titleComplement'] = 'S\'enregistrer';
+		
+		$this->form_validation->set_message('required', 'Le champs "%s" est n&eacute;cessaire. Veuillez le compl&eacute;ter.');
+
+		$this->form_validation->set_rules('email', 'Adresse Mail', 'trim|required|xss_clean|valid_email');
+		$this->form_validation->set_rules('password', 'Mot de passe', 'trim|required|xss_clean');
+		
+		if ($this->form_validation->run() == FALSE) {
+			$data['connexion_error'] = "L'adresse mail n'est pas valide ou le mot de passe est manquant.";
+			$this->load->view('header', $data);
+			$this->load->view('user/register');
+			$this->load->view('footer');		
+		} else {
+				$userId = $this->Users->create($this->input->post('status'), $this->input->post('email'), $this->input->post('password'));
+				$user = $this->Users->get($userId);
+				$newdata = array(
+                 	  'user'  => $user,
+               		);
+
+				$this->session->set_userdata($newdata);
+				
+				$this->load->view('header', $data);
+				$this->load->view('user/registerok');
+				$this->load->view('footer');
 		}
 	}
 	
