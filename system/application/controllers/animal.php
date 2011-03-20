@@ -26,8 +26,6 @@ class Animal extends Controller {
 		}
 		
 		$this->form_validation->set_message('required', 'Le champs "%s" est n&eacute;cessaire. Veuillez le compl&eacute;ter.');
-
-		$this->form_validation->set_rules('email', 'Adresse Mail', 'trim|required|xss_clean');
 		
 		$this->form_validation->set_rules('name', 'Nom', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('race', 'Race', 'trim|required|xss_clean');
@@ -71,11 +69,13 @@ class Animal extends Controller {
 
 				$species = $this->Species->get($this->input->post('species'));
 			
+				$birth = "".$this->input->post('birth_aaaa')."-".$this->input->post('birth_mm')."-".$this->input->post('birth_jj');	
+			
 				$animalId = $this->Animals->create(
 					$this->input->post('name'),
 					$species,
 					$this->input->post('race'),
-					$this->input->post('birth_aaaa').'/'.$this->input->post('birth_mm').'/'.$this->input->post('birth_jj'),
+					$birth,
 					$this->input->post('sex'),
 					$this->input->post('bloodgroup'),
 					$vaccines,
@@ -91,6 +91,8 @@ class Animal extends Controller {
 				array_push($this->session->userdata("user")->animals, $animal);
 				
 				$this->Users->update($this->session->userdata("user")->animals, $this->session->userdata("user")->id);
+				
+				$data['titleComplement'] = 'Ajout d\'animal';
 				
 				$this->load->view('header', $data);
 				$this->load->view('animal/addingok');

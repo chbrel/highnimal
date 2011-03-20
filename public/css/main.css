@@ -201,3 +201,30 @@ body {
 	margin-top: 10px;
 	color: white;
 }
+
+.animal {
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+.animal_photo {
+	float: left;
+	background-image: url('../images/empty.png');
+	background-repeat: no-repeat;
+	width: 28%;
+	height: 149px;
+	
+}
+
+.animal_infos {
+	float:right;
+	
+	width: 68%;
+	
+	background-color: white;
+	border-radius: 0.5em 0.5em;
+	-moz-border-radius: 0.5em 0.5em;
+	-webkit-border-radius: 0.5em 0.5em;
+	
+	padding: 10px;
+}
