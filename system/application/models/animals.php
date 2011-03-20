@@ -54,17 +54,19 @@ class Animals extends Model {
 					 ->or_like('appearance', $searchkey)
 					 ->or_like('pedigree', $searchkey);
 			
-			array_push($results, $this->db->get('animals')->result());
-		}
-		
-		$mergedResults = array();
-		foreach($results as $result)
-		{
-			$mergedResults = array_unique(array_merge($mergedResults, $result));
+			$query = $this->db->get('animals');
+			$result = $query->result();
+			
+			$ids = array();
+			foreach($result as $r) {
+				array_push($ids, $r->id);
+			}
+			
+			$results = array_unique(array_merge($results, $ids));
 		}
 		
 		$objects = array();
-		foreach($mergedResults as $result)
+		foreach($results as $result)
 		{
 			array_push($objects, $this->get($result));
 		}
