@@ -1,6 +1,7 @@
-<ul>
+
 	<h2>Profil</h2>
-	<div class="login"><b>Nom : </b> <?php if($this->session->userdata("user")->name == "") { echo "<span style=\"color:red\">Non renseigné</span>"; } else { echo $this->session->userdata("user")->name; } ?></div>
+	<div class="profil">
+	<div><b>Nom : </b> <?php if($this->session->userdata("user")->name == "") { echo "<span style=\"color:red\">Non renseigné</span>"; } else { echo $this->session->userdata("user")->name; } ?></div>
 	<div><b>Statut : </b> <?php echo $this->session->userdata("user")->status; ?></div>	
 	<div><b>Adresse Mail : </b> <?php echo $this->session->userdata("user")->email; ?></div>
 	<div><b>T&eacute;l&eacute;phone : </b> <?php if($this->session->userdata("user")->phone == "") { echo "<span style=\"color:red\">Non renseigné</span>"; } else { echo $this->session->userdata("user")->phone; } ?></div>
@@ -8,6 +9,7 @@
 	<div><b>Immatriculation : </b> <?php if($this->session->userdata("user")->registration == "") { echo "<span style=\"color:red\">Non renseigné</span>"; } else { echo $this->session->userdata("user")->registration; } ?></div>
 	<div><b>Cr&eacute;dits disponible : </b> <?php echo $this->session->userdata("user")->credits; ?></div>
 	<div><b>Autre : </b> <?php if($this->session->userdata("user")->other == "") { echo "Néant"; } else {  echo $this->session->userdata("user")->other; } ?></div>
+	</div>
 	
 	<h2>Animaux</h2>
 	<div id="animals">
@@ -28,13 +30,11 @@
 				<div class="animal_vaccines"><b>Vaccins / Tests Médicaux : </b> <?php if($animal->vaccines == "") { echo "Non Renseigné"; } else { echo $animal->vaccines; } ?></div>
 				<div class="animal_appearance"><b>Particularités Physiques : </b> <?php if($animal->appearance == "") { echo "Néant";} else { echo $animal->appearance; } ?></div>
 				
-				<div class="clear"> </div>
 			</div>
-		
+			<div class="clear"> </div>
+		</div>
 	<?php
 	}
 	?>
 	</div>
 </div>
-
-</ul>

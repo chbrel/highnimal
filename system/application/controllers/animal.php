@@ -108,10 +108,22 @@ class Animal extends Controller {
 	function search() {
 		$data['titleComplement'] = 'Résultats de la recherche';
 		$data['totalAnimals'] = $this->Animals->getTotalNumber();
-		$data2['search_results'] = $this->Animals->search($this->input->post('search_input'));
+		$animals = $this->Animals->search($this->input->post('search_input'));
+		
+		foreach($animals as $animal) {
+			if($animal->mother != null) {
+				$animal->mother = $this->ParentAnimals->get($animal->mother);
+			}
+				
+			if($animal->father != null) {
+				$animal->father = $this->ParentAnimals->get($animal->father);
+			}
+		}
+		
+		$data['search_results'] = $animals;
 		
 		$this->load->view('header', $data);
-		$this->load->view('search/results', $data2);
+		$this->load->view('search/results', $data);
 		$this->load->view('footer');
 	}
 }
