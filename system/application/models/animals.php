@@ -56,17 +56,17 @@ class Animals extends Model {
     	$data = array(
                'id' => '' ,
                'name' => $name,
-               'species' => $species->id,
+               'id_species' => $species->id,
                'race' => $race,
                'birthdate' => $birthdate,
                'sex' => $sex,
-               '$bloodgroup' => $bloodgroup,
-               '$vaccines' => $vaccines,
-               '$color' => $color,
-               '$appearance' => $appearance,
-               '$pedigree' => $pedigree,
-               'mother' => $id_mother,
-               'father' => $id_father,
+               'bloodgroup' => $bloodgroup,
+               'vaccines' => $vaccines,
+               'color' => $color,
+               'appearance' => $appearance,
+               'pedigree' => $pedigree,
+               'id_mother' => $id_mother,
+               'id_father' => $id_father,
             );
 
 		$query = $this->db->insert('animals', $data);

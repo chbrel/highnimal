@@ -26,6 +26,7 @@
 				<?=anchor('user/register', '<div id="register">&nbsp;</div>', array('title' => 'Créer un compte')); ?>
 				<?=anchor('user/login', '<div id="login">&nbsp;</div>', array('title' => 'Se connecter')); ?>
 			<?php } else { ?>
+				<div id="monprofil"><?=anchor('user/index', 'Consulter mon profil', array('title' => 'Consulter mon profil')); ?></div>
 				<div id="logout"><?=anchor('user/logout', 'Se d&eacute;connecter ('.$this->session->userdata("user")->email.')', array('title' => 'Se déconnecter')); ?></div>
 			<?php } ?>
 		</div>
