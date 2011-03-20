@@ -41,15 +41,35 @@ class Animals extends Model {
     
 	function search($searchkeys)
 	{
-		$query = $this->db->query("SELECT 'id' FROM 'animals' WHERE 'race' LIKE '%?%'", $searchkeys);
-		$result = $query->result();
-		
-		foreach($result as $r)
+		$results = array();
+		foreach(explode(' ', trim($searchkeys)) as $searchkey)
 		{
-			array_push($results, $this->get($r));
+			$this->db->select('id')
+					 ->like('name', $searchkey)
+					 ->or_like('race', $searchkey)
+					 ->or_like('sex', $searchkey)
+					 ->or_like('bloodgroup', $searchkey)
+					 ->or_like('vaccines', $searchkey)
+					 ->or_like('color', $searchkey)
+					 ->or_like('appearance', $searchkey)
+					 ->or_like('pedigree', $searchkey);
+			
+			array_push($results, $this->db->get('animals')->result());
 		}
 		
-		return $results;
+		$mergedResults = array();
+		foreach($results as $result)
+		{
+			$mergedResults = array_unique(array_merge($mergedResults, $result));
+		}
+		
+		$objects = array();
+		foreach($mergedResults as $result)
+		{
+			array_push($objects, $this->get($result));
+		}
+		
+		return $objects;
 	}
 	
     function create($name, $species, $race, $birthdate, $sex, $bloodgroup, $vaccines, $color, $appearance, $pedigree, $mother = null, $father = null) {    

@@ -35,7 +35,7 @@
 		<div id="direct_search">
 		<div id="loupe"> </div>
 		<?php
-			echo form_open('accueil/search');
+			echo form_open('animal/search');
 			$params = array(
               'name'        => 'search_input',
               'id'          => 'search_input',
