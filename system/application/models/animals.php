@@ -20,7 +20,7 @@ class Animals extends Model {
 		
 		if($animal->id_mother != null)
 		{
-			$animal->mother = $this->ParentAnimals->get($animal->id_mother);
+			$animal->mother = $animal->id_mother;
 		}
 		else
 		{
@@ -29,7 +29,7 @@ class Animals extends Model {
 		
 		if($animal->id_father != null)
 		{
-			$animal->father = $this->ParentAnimals->get($animal->id_father);
+			$animal->father = $animal->id_father;
 		}
 		else
 		{
@@ -37,6 +37,14 @@ class Animals extends Model {
 		}
 		
 		return $animal;
+    }
+    
+    function getTotalNumber() {
+    	$this->db->from('animals');
+    	$query = $this->db->get();
+    	$result = $query->result();
+    	
+    	return count($result);
     }
     
     function create($name, $species, $race, $birthdate, $sex, $bloodgroup, $vaccines, $color, $appearance, $pedigree, $mother = null, $father = null) {    

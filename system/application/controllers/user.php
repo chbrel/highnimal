@@ -14,6 +14,7 @@ class User extends Controller {
 		}
 		
 		$data['titleComplement'] = 'Profil';
+		$data['totalAnimals'] = $this->Animals->getTotalNumber();
 		
 		$this->load->view('header', $data);
 		$this->load->view('user/index', $data);
@@ -22,6 +23,7 @@ class User extends Controller {
 	
 	function login() {
 		$data['titleComplement'] = 'Se connecter';
+		$data['totalAnimals'] = $this->Animals->getTotalNumber();
 		
 		$this->form_validation->set_message('required', 'Le champs "%s" est n&eacute;cessaire. Veuillez le compl&eacute;ter.');
 
@@ -36,6 +38,22 @@ class User extends Controller {
 			$user = $this->Users->check_user($this->input->post('email'), $this->input->post('password'));
 			if($user!=null) {
 				$user = $this->Users->get($user->id);
+				$aObjects = array();
+				foreach($user->animals as $a) {
+					$animal = $this->Animals->get($a);
+					
+					if($animal->mother != null) {
+						$animal->mother = $this->ParentAnimals->get($animal->mother);
+					}
+					
+					if($animal->father != null) {
+						$animal->father = $this->ParentAnimals->get($animal->father);
+					}
+					
+					array_push($aObjects, $animal);
+				}
+				$user->animals = $aObjects;
+				
 				$newdata = array(
                  	  'user'  => $user,
                		);
@@ -56,6 +74,7 @@ class User extends Controller {
 	
 	function register() {
 		$data['titleComplement'] = 'S\'enregistrer';
+		$data['totalAnimals'] = $this->Animals->getTotalNumber();
 		
 		$this->form_validation->set_message('required', 'Le champs "%s" est n&eacute;cessaire. Veuillez le compl&eacute;ter.');
 		$this->form_validation->set_message('min_length', 'Le champs "%s" doit contenir minimum 6 caract&egrave;res. Veuillez le compl&eacute;ter.');
@@ -84,6 +103,22 @@ class User extends Controller {
 			} else {
 				$userId = $this->Users->create($this->input->post('status'), $email, $this->input->post('password'));
 				$user = $this->Users->get($userId);
+				$aObjects = array();
+				foreach($user->animals as $a) {
+					$animal = $this->Animals->get($a);
+					
+					if($animal->mother != null) {
+						$animal->mother = $this->ParentAnimals->get($animal->mother);
+					}
+					
+					if($animal->father != null) {
+						$animal->father = $this->ParentAnimals->get($animal->father);
+					}
+
+					array_push($aObjects, $animal);
+				}
+				$user->animals = $aObjects;
+				
 				$newdata = array(
 					  'user'  => $user,
 					);
@@ -103,9 +138,10 @@ class User extends Controller {
 		}
 		
 		$data['titleComplement'] = 'Se déconnecter';
+		$data['totalAnimals'] = $this->Animals->getTotalNumber();
 		
 		$this->session->unset_userdata(array('user' => ''));
-		$this->session->destroy_session();
+		$this->session->destroy();
 		
 		$this->load->view('header', $data);
 		$this->load->view('user/logoutok');

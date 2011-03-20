@@ -14,6 +14,7 @@ class Animal extends Controller {
 		}
 		
 		$data['titleComplement'] = 'Profil';
+		$data['totalAnimals'] = $this->Animals->getTotalNumber();
 		
 		$this->load->view('header', $data);
 		$this->load->view('user/index', $data);
@@ -36,6 +37,7 @@ class Animal extends Controller {
 		
 		if ($this->form_validation->run() == FALSE) {
 			$data['titleComplement'] = 'Ajouter un animal';
+			$data['totalAnimals'] = $this->Animals->getTotalNumber();
 		
 			$data['species'] = $this->Species->getAll();
 	
@@ -46,6 +48,7 @@ class Animal extends Controller {
 			$validation_date=checkdate($this->input->post('birth_jj'), $this->input->post('birth_mm'), $this->input->post('birth_aaaa'));
 			if ($validation_date==false) {
 				$data['titleComplement'] = 'Ajouter un animal';
+				$data['totalAnimals'] = $this->Animals->getTotalNumber();
 				
 				$data['connexion_error'] = "La date de naissance n'est pas une date valide. Veuillez la modifier.";
 				
@@ -93,6 +96,7 @@ class Animal extends Controller {
 				$this->Users->update($this->session->userdata("user")->animals, $this->session->userdata("user")->id);
 				
 				$data['titleComplement'] = 'Ajout d\'animal';
+				$data['totalAnimals'] = $this->Animals->getTotalNumber();
 				
 				$this->load->view('header', $data);
 				$this->load->view('animal/addingok');

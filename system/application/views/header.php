@@ -56,7 +56,7 @@
 	</div>
 	
 	<div id="infos">
-		Actuellement, il y a 1234 offres et 789 demandes sur Highnimal!
+		Actuellement, il y a <?php echo $totalAnimals; ?> offres et 789 demandes sur Highnimal!
 	</div>
 	
 	<div id="content" role="main">

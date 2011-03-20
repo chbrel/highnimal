@@ -10,6 +10,7 @@ class Accueil extends Controller {
 	
 	function index() {
 		$data['titleComplement'] = 'Bienvenue';
+		$data['totalAnimals'] = $this->Animals->getTotalNumber();
 		
 		$this->load->view('header', $data);
 		$this->load->view('accueil/index');
