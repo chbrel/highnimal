@@ -50,7 +50,23 @@ class Animals extends Model {
 
 	function search($searchkeys)
 	{
-		$results = array();
+		$allSearchKeys = explode(' ', trim($searchkeys));
+	
+		$results = array();		
+		foreach($allSearchKeys as $searchKey)
+		{
+			$query = $this->db->query("SELECT a.id AS id FROM animals a INNER JOIN species s ON a.id_species = s.id WHERE s.name LIKE '%".$searchKey."%'");
+			$result = $query->result();
+			
+			$ids = array();
+			foreach($result as $r)
+			{
+				array_push($ids, $r->id);
+			}
+			
+			$results = array_merge($results, $ids);
+		}
+		
 		foreach(explode(' ', trim($searchkeys)) as $searchkey)
 		{
 			$this->db->select('id')
