@@ -43,9 +43,18 @@ class Users extends Model {
 		return $newId;
     }
     
-    function update($data, $id_user) {
-    	$this->db->where('id = '.$id_user);
-    	$this->db->update('users', $data);
+    function update($animals, $id_user) {
+    	$this->db->where('id_user = '.$id_user);
+		$this->db->delete('users_animals');
+    
+    	foreach($animals as $a) {
+    		$data = array(
+               'id_user' => $id_user ,
+               'id_animal' => $a->id
+              );
+
+			$query = $this->db->insert('users_animals', $data);
+    	}
     }
     
     function delete($id_user) {

@@ -108,7 +108,7 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array('Users');
+$autoload['model'] = array('Users', 'Animals', 'Contests', 'Parentanimals', 'Species');
 
 
 

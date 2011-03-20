@@ -13,13 +13,13 @@
 <![endif]-->
 </head>
 <body>
-	<div id="mainheader" class="branding" role="banner">
+	<?=anchor('accueil/index', '<div id="mainheader">', array('title' => 'Highline')); ?>
 	</div>
 	
 	<div id="navigation" role="navigation">
 		<div id="actions">
-			<?=anchor('animals/offer', '<div id="offre" class="action">&nbsp;</div>', array('title' => 'Poster une offre')); ?>
-			<?=anchor('animals/demand', '<div id="demande" class="action">&nbsp;</div>', array('title' => 'Poster une demande')); ?>
+			<?=anchor('animal/offer', '<div id="offre" class="action">&nbsp;</div>', array('title' => 'Poster une offre')); ?>
+			<?=anchor('animal/demand', '<div id="demande" class="action">&nbsp;</div>', array('title' => 'Poster une demande')); ?>
 		</div>
 		<div id="connexion">
 			<?php if(!$this->session->userdata("user")) { ?>
