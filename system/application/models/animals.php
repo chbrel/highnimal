@@ -9,10 +9,34 @@ class Animals extends Model {
     function get($id_animal) {
     	$this->db->from('animals')->where('id = '.$id_animal);
     	$query = $this->db->get();
-    	
     	$result = $query->result();
     	
-    	return $result[0];
+    	$animal = $result[0];
+		
+    	$this->db->from('species')->where('id = '.$animal->id_species);
+    	$query = $this->db->get();
+    	$result = $query->result();
+		$animal->species = $result[0];
+		
+		if($animal->id_mother != null)
+		{
+			$animal->mother = $this->ParentAnimals->get($animal->id_mother);
+		}
+		else
+		{
+			$animal->mother = null;
+		}
+		
+		if($animal->id_father != null)
+		{
+			$animal->father = $this->ParentAnimals->get($animal->id_father);
+		}
+		else
+		{
+			$animal->father = null;
+		}
+		
+		return $animal;
     }
     
     function create($name, $species, $race, $birthdate, $sex, $bloodgroup, $vaccines, $color, $appearance, $pedigree, $mother = null, $father = null) {    

@@ -12,7 +12,14 @@ class ParentAnimals extends Model {
     	
     	$result = $query->result();
     	
-    	return $result[0];
+    	$parentAnimal = $result[0];
+		
+    	$this->db->from('species')->where('id = '.$parentAnimal->id_species);
+    	$query = $this->db->get();
+    	$result = $query->result();
+		$parentAnimal->species = $result[0];
+		
+		return $parentAnimal;
     }
     
     function create($name, $species, $race, $birthdate, $sex, $pedigree) {    

@@ -21,7 +21,7 @@ class Users extends Model {
     	$user->animals = array();
     	
     	foreach($result as $r) {
-    		array_push($m->animals, $this->Animals->get($r->id_animal));
+    		array_push($user->animals, $this->Animals->get($r->id_animal));
     	}
     	
     	return $user;
