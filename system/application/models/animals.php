@@ -39,6 +39,19 @@ class Animals extends Model {
 		return $animal;
     }
     
+	function search($searchkeys)
+	{
+		$query = $this->db->query("SELECT 'id' FROM 'animals' WHERE 'race' LIKE '%?%'", $searchkeys);
+		$result = $query->result();
+		
+		foreach($result as $r)
+		{
+			array_push($results, $this->get($r));
+		}
+		
+		return $results;
+	}
+	
     function create($name, $species, $race, $birthdate, $sex, $bloodgroup, $vaccines, $color, $appearance, $pedigree, $mother = null, $father = null) {    
     	
     	if($mother != null) {
