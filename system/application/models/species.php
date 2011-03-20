@@ -15,6 +15,13 @@ class Species extends Model {
     	return $result[0];
     }
     
+    function getAll() {
+    	$this->db->from('species');
+    	$query = $this->db->get();
+    	
+    	return $query->result();
+    }
+    
     function create($name) {    
     	$data = array(
                'id' => '' ,
