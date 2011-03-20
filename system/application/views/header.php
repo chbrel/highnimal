@@ -18,37 +18,40 @@
 	
 	<div id="navigation" role="navigation">
 		<div id="actions">
-			<div id="offre">Poster une offre</div>
-			<div id="demande">Poster une demande</div>
+			<?=anchor('animals/offer', '<div id="offre" class="action">&nbsp;</div>', array('title' => 'Poster une offre')); ?>
+			<?=anchor('animals/demand', '<div id="demande" class="action">&nbsp;</div>', array('title' => 'Poster une demande')); ?>
 		</div>
 		<div id="connexion">
 			<?php if(!$this->session->userdata("user")) { ?>
-				<div id="register"><?=anchor('user/register', 'Cr&eacute;er un compte', array('title' => 'Créer un compte')); ?></div>
-				<div id="login"><?=anchor('user/login', 'Se connecter', array('title' => 'Se connecter')); ?></div>
+				<?=anchor('user/register', '<div id="register">&nbsp;</div>', array('title' => 'Créer un compte')); ?>
+				<?=anchor('user/login', '<div id="login">&nbsp;</div>', array('title' => 'Se connecter')); ?>
 			<?php } else { ?>
 				<div id="logout"><?=anchor('user/logout', 'Se d&eacute;connecter ('.$this->session->userdata("user")->email.')', array('title' => 'Se déconnecter')); ?></div>
 			<?php } ?>
 		</div>
 	</div>
-	
+	<div class="clear"> </div>
 	<div id="search">
+		<div id="direct_search">
+		<div id="loupe"> </div>
 		<?php
 			echo form_open('search/index');
 			$data_search = array(
-              'name'        => 'search',
-              'id'          => 'search',
+              'name'        => 'search_input',
+              'id'          => 'search_input',
               'value'       => 'Mots Clefs',
-              'size' => '75',
-              'maxlength' => '50',
+              'size' => '50',
             );
-			echo form_label('<img src="'.base_url().'/images/loupe.png" alt="Search" />', 'search');
+//			echo form_label('', 'search_input');
+			
 			echo form_input($data_search);
 			echo form_submit('Rechercher', 'Rechercher');
 			echo form_close();
 		
 		?>
-		<?php site_url("search/run"); ?>
-		<?=anchor('search/index', 'Recherche Avancée', array('title' => 'Recherche Avancée')); ?>
+		</div>
+		<?=anchor('search/index', 'Recherche Avancée', array('title' => 'Recherche Avancée', 'id' => 'advanced_search')); ?>
+		<div class="clear"> </div>
 	</div>
 	
 	<div id="infos">
