@@ -105,8 +105,7 @@ class User extends Controller {
 		$data['titleComplement'] = 'Se déconnecter';
 		
 		$this->session->unset_userdata(array('user' => ''));
-		session_destroy();
-		// $this->session->destroy_session();
+		$this->session->destroy_session();
 		
 		$this->load->view('header', $data);
 		$this->load->view('user/logoutok');
