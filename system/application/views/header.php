@@ -34,7 +34,7 @@
 	<div class="clear"> </div>
 	<div id="search">
 		<div id="direct_search">
-		<div id="loupe"> </div>
+			<img src="<?=base_url()?>/public/images/loupe.png" id="loupe" width="17px" height="20px" />
 		<?php
 			echo form_open('animal/search');
 			$params = array(
@@ -55,7 +55,7 @@
 	</div>
 	
 	<div id="infos">
-		Actuellement, il y a <?php echo $totalAnimals; ?> offres et 789 demandes sur Highnimal!
+		Actuellement, il y a <?php echo $totalAnimals; ?> offres et 0 demandes sur Highnimal!
 	</div>
 	
 	<div id="content" role="main">

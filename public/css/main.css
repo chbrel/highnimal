@@ -5,6 +5,11 @@
 
 a {
 	text-decoration: none;
+	color: #505050;
+}
+
+a:hover {
+	text-decoration: underline;
 }
 
 .clear {
@@ -103,10 +108,11 @@ body {
 	-moz-border-radius: 0.5em 0.5em;
 	-webkit-border-radius: 0.5em 0.5em;
 	
-	background-image: url('../images/search_input.png');
-	background-repeat: repeat-x;
 	margin-left: auto;
 	margin-right: auto;
+	
+	background-image: url('../images/search_input.png');
+	background-repeat: repeat-x;
 	
 	width: 50%;
 	height: 40px;
@@ -116,15 +122,17 @@ body {
 }
 
 #direct_search #loupe {
-	background-image: url('../images/loupe.png');
-	background-repeat: no-repeat;
 	
+	/*background-image: url('../images/loupe.png');
+	background-repeat: no-repeat;
+	background-position: left;
+	background-attachment: inherit;
 	width: 17px;
-	height: 20px;
+	height: 20px;*/
 }
 
 #direct_search #loupe, #direct_search form {
-	float: left;
+	display: inline;
 }
 
 #advanced_search {
