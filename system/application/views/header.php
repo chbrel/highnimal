@@ -36,16 +36,15 @@
 		<div id="direct_search">
 		<div id="loupe"> </div>
 		<?php
-			echo form_open('search/run');
-			$data_search = array(
+			echo form_open('animal/search');
+			$params = array(
               'name'        => 'search_input',
               'id'          => 'search_input',
               'value'       => 'Mots Clefs',
               'size' => '50',
             );
 //			echo form_label('', 'search_input');
-			
-			echo form_input($data_search);
+			echo form_input($params);
 			echo form_submit('Rechercher', 'Rechercher');
 			echo form_close();
 		

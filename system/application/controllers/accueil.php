@@ -17,6 +17,3 @@ class Accueil extends Controller {
 		$this->load->view('footer');
 	}
 }
-
-/* End of file accueil.php */
-/* Location: ./system/application/controllers/accueil.php */

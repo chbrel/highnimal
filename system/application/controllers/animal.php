@@ -104,7 +104,13 @@ class Animal extends Controller {
 			}
 		}
 	}
+	
+	function search() {
+		$data['titleComplement'] = 'Résultats de la recherche';
+		$data2['search_results'] = $this->Animals->search($this->input->post('search_input'));
+		
+		$this->load->view('header', $data);
+		$this->load->view('search/results', $data2);
+		$this->load->view('footer');
+	}
 }
-
-/* End of file user.php */
-/* Location: ./system/application/controllers/user.php */

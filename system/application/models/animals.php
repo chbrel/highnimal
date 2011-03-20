@@ -47,6 +47,42 @@ class Animals extends Model {
     	return count($result);
     }
     
+
+	function search($searchkeys)
+	{
+		$results = array();
+		foreach(explode(' ', trim($searchkeys)) as $searchkey)
+		{
+			$this->db->select('id')
+					 ->like('name', $searchkey)
+					 ->or_like('race', $searchkey)
+					 ->or_like('sex', $searchkey)
+					 ->or_like('bloodgroup', $searchkey)
+					 ->or_like('vaccines', $searchkey)
+					 ->or_like('color', $searchkey)
+					 ->or_like('appearance', $searchkey)
+					 ->or_like('pedigree', $searchkey);
+			
+			$query = $this->db->get('animals');
+			$result = $query->result();
+			
+			$ids = array();
+			foreach($result as $r) {
+				array_push($ids, $r->id);
+			}
+			
+			$results = array_unique(array_merge($results, $ids));
+		}
+		
+		$objects = array();
+		foreach($results as $result)
+		{
+			array_push($objects, $this->get($result));
+		}
+		
+		return $objects;
+	}
+	
     function create($name, $species, $race, $birthdate, $sex, $bloodgroup, $vaccines, $color, $appearance, $pedigree, $mother = null, $father = null) {    
     	
     	if($mother != null) {
