@@ -33,7 +33,7 @@
 	
 	<div id="search">
 		<?php
-			echo form_open('search/run');
+			echo form_open('search/index');
 			$data_search = array(
               'name'        => 'search',
               'id'          => 'search',
