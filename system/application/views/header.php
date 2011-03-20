@@ -26,11 +26,33 @@
 				<div id="register"><?=anchor('user/register', 'Cr&eacute;er un compte', array('title' => 'Créer un compte')); ?></div>
 				<div id="login"><?=anchor('user/login', 'Se connecter', array('title' => 'Se connecter')); ?></div>
 			<?php } else { ?>
-				<div id="logout"><?=anchor('user/logout', 'Log Out ('.$this->session->userdata("user")->email.')', array('title' => 'log out')); ?></div>
+				<div id="logout"><?=anchor('user/logout', 'Se d&eacute;connecter ('.$this->session->userdata("user")->email.')', array('title' => 'Se déconnecter')); ?></div>
 			<?php } ?>
 		</div>
 	</div>
 	
-	<?=anchor('search/index', 'Recherche', array('title' => 'Recherche')); ?>
+	<div id="search">
+		<?php
+			echo form_open('search/run');
+			$data_search = array(
+              'name'        => 'search',
+              'id'          => 'search',
+              'value'       => 'Mots Clefs',
+              'size' => '75',
+              'maxlength' => '50',
+            );
+			echo form_label('<img src="'.base_url().'/images/loupe.png" alt="Search" />', 'search');
+			echo form_input($data_search);
+			echo form_submit('Rechercher', 'Rechercher');
+			echo form_close();
+		
+		?>
+		<?php site_url("search/run"); ?>
+		<?=anchor('search/index', 'Recherche Avancée', array('title' => 'Recherche Avancée')); ?>
+	</div>
 	
-	<div id="section-main" role="main">
+	<div id="infos">
+		Actuellement, il y a 1234 offres et 789 demandes sur Highnimal!
+	</div>
+	
+	<div id="content" role="main">
