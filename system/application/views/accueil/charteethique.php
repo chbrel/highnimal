@@ -1,5 +1,5 @@
 <div id="maincontent">
-<h1>Charte d’éthique</h1>
+<h1>Charte Qualité, Ethique et Simplicité (QES)</h1>
 
 Le site Highnimal souhaite développer dans cette Charte d'éthique les idées fortes qui animent ses membres et mettre en évidence la responsabilité de chacun et les moyens à utiliser pour les assumer. Cette Charte d'éthique est élaborée avec le souci de protéger et reconnaître les propriétaires d’animaux de pedigree, mais aussi pour leur offrir certaines garanties.
 
