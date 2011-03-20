@@ -208,6 +208,10 @@ body {
 	margin-bottom: 10px;
 }
 
+.sidebar_item_content {
+	text-align: justify;
+}
+
 #footer {
 	display: block;
 	background-color: #3a3a3a;
