@@ -30,26 +30,31 @@
 				<div id="logout"><?=anchor('user/logout', 'Se d&eacute;connecter ('.$this->session->userdata("user")->email.')', array('title' => 'Se déconnecter')); ?></div>
 			<?php } ?>
 		</div>
+		<div class="clear"> </div>
 	</div>
-	<div class="clear"> </div>
+	
 	<div id="search">
-		<div id="direct_search">
-			<img src="<?=base_url()?>/public/images/loupe.png" id="loupe" width="17px" height="20px" />
 		<?php
 			echo form_open('animal/search');
 			$params = array(
               'name'        => 'search_input',
               'id'          => 'search_input',
               'value'       => 'Mots Clefs',
-              'size' => '50',
+              'size' => '40',
             );
+         ?>
+         <div id="direct_search">
+         <?php
 //			echo form_label('', 'search_input');
 			echo form_input($params);
-			echo form_submit('Rechercher', 'Rechercher');
+		?>
+		</div>
+		<?php
+			echo form_submit(array('value' => '', 'name' => 'Chercher', 'id'=>'search_submit'));
 			echo form_close();
 		
 		?>
-		</div>
+		
 		<?=anchor('search/index', 'Recherche Avancée', array('title' => 'Recherche Avancée', 'id' => 'advanced_search')); ?>
 		<div class="clear"> </div>
 	</div>
